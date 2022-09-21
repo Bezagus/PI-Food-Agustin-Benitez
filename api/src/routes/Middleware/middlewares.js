@@ -16,7 +16,10 @@ const getAllApi = async () =>{
 }
 const getApi = async () =>{
     try{
-        const infoApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true`);
+        const infoApi = await axios.get(
+            /* `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true` */
+            'https://run.mocky.io/v3/64dfef83-658b-47e0-a079-8e106c0bc34a'
+            );
         const dataApi = infoApi.data;
         const results = dataApi.results;
         
@@ -32,6 +35,7 @@ const getApi = async () =>{
                 summary: el.summary,
                 healthScore: el.healthScore,
                 steps: step[0],
+                diets: el.diets,
                 img: el.image,
             })
         })
@@ -61,6 +65,11 @@ const getDiets = async () =>{
 };
 
 const getById = async (id) =>{
+    let step2 = el.analyzedInstructions.map(a=>{
+        return a.steps.map(as=>{
+            return(`Paso ${as.number}: ${as.step}.`)
+        })
+    });
     try{
         const recipe = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}`)
         const dataRecipe = recipe.data;
@@ -69,6 +78,8 @@ const getById = async (id) =>{
             name: dataRecipe.title,
             summary: dataRecipe.summary,
             healthScore: dataRecipe.healthScore,
+            steps: step2[0],
+            diets: dataRecipe.diets,
             img: dataRecipe.image,
         }
         return(dataAll)
