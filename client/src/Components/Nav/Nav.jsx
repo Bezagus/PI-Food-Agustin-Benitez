@@ -10,7 +10,7 @@ export default function Nav(){
     return(
         <div className="Nav_Container">
             <h1 className="Nav_Title">PI-Food Henry</h1>
-            <Link to='/Recipes'>
+            <Link to='/CreateRecipe'>
                 <button class="button-36-Nav" role="button">Crear Receta</button>
             </Link>
         </div>

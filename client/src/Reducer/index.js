@@ -5,7 +5,8 @@ const initialState = {
     allRecipes:[],
     Diets: [],
     recipesFiltered: [],
-    detail: {},
+    detail: [],
+    aux:[],
 
 }
 
@@ -18,6 +19,11 @@ function rooReducer (state= initialState, action){
                 allRecipes: action.payload,
                 recipesFiltered: action.payload,
             }
+        case 'GET_DIETS':
+            return{
+                ...state,
+                Diets: action.payload
+            }
         case 'CLEAN_RECIPE':
             return{
                 ...state,
@@ -26,9 +32,11 @@ function rooReducer (state= initialState, action){
         case 'FILTER_BY_DIET':
             const allRecipe = state.allRecipes;
             const statusFilter =  allRecipe.filter(el => el.diets.includes(action.payload))
+            const allFilter = statusFilter.length > 1? statusFilter : allRecipe
             return{
                 ...state,
-                recipes: statusFilter,
+                aux: allRecipe,
+                recipes: action.payload === 'default'? state.allRecipes : allFilter,
             }  
         case 'ORDEN_BY_NAME':
             let orderedRecipes = [...state.recipes]
@@ -46,7 +54,8 @@ function rooReducer (state= initialState, action){
                     })
             return{
                 ...state,
-                recipes: orderedRecipes,
+                axu: state.recipes,
+                recipes: action.payload === 'default'? state.aux : orderedRecipes
             }  
         case 'ORDEN_BY_SCORE':
             let orderedRecipes2 = [...state.recipes]
@@ -64,7 +73,8 @@ function rooReducer (state= initialState, action){
                     })
             return{
                 ...state,
-                recipes: orderedRecipes2,
+                axu: state.recipes,
+                recipes: action.payload === 'default'? state.aux : orderedRecipes2,
             } 
         case 'CLEAN_DETAIL':
             return{
@@ -78,10 +88,19 @@ function rooReducer (state= initialState, action){
             }
         case 'SEARCH_BAR':
             let resultSearch = [...state.allRecipes];
-            resultSearch= resultSearch.filter(el=> el.name === action.payload);
+            resultSearch= resultSearch.filter(el=> el.name.toLowerCase() === action.payload.toLowerCase());
             return{
                 ...state,
-                recipes: resultSearch
+                recipes: resultSearch.length > 0? resultSearch : state.recipes
+            }
+        case 'ADD_RECIPE':
+            return{
+                ...state,
+                recipes:state.recipes.concat(action.payload)
+            }
+        case 'POST_RECIPE':
+            return{
+                ...state,
             }
         default: 
          return{

@@ -11,19 +11,13 @@ export default function Filters(){
     const allRecipes = useSelector((state)=> state.recipes);
     
     function handleFilterDiet(e){
-        if(e.target.value !== 'default'){
             dispatch(filterRecipesByDiets(e.target.value))
-        }
     };
     function handleOrdenByName(e){
-        if(e.target.value !== 'default'){
             dispatch(ordenByName(e.target.value))
-        }
     };
     function handleOrdenByScore(e){
-        if(e.target.value !== 'default'){
             dispatch(ordenByScore(e.target.value))
-        }
     }
     
     return(

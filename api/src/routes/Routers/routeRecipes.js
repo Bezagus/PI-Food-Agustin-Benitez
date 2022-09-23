@@ -28,22 +28,18 @@ router.get('/',async  (req, res)=>{
 });
 router.get('/:id',async (req, res) =>{
     const { id } = req.params
-    try{
         const info = await getById(id);
         res.status(200).send(info)
-    }catch(error){
-        res.status(404).send(error)
-    }
 })
 
 router.post('/', async (req, res) =>{
-    const { name, summary, healthScore, steps, img, Diet } = req.body;
+    const { name, summary, healthScore, steps, img, diet } = req.body;
 
     if(!name || !summary){
         res.status(404).send('Nombre y Resumen Obligatorio')
     }
     const allRecipe = await getApi();
-    const isRecipe = allRecipe.find(e=> e.name === name.toLowerCase());
+    const isRecipe = allRecipe.find(e=> e.name=== name );
     if(!isRecipe){
         const recipe = await Recipe.create({
             name,
@@ -55,7 +51,7 @@ router.post('/', async (req, res) =>{
 
         const typeDb = await Diet.findAll({
             where:{
-                name: Diet
+                name: diet
             }
         });
 

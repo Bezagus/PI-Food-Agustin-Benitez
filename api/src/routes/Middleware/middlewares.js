@@ -8,7 +8,10 @@ const {Recipe, Diet} = require('../../db.js')
 
 const getAllApi = async () =>{
     try{
-        const infoAllApi = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true`);
+        const infoAllApi = await axios.get(
+            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true`
+           /* 'https://run.mocky.io/v3/64dfef83-658b-47e0-a079-8e106c0bc34a' */
+            );
         return (infoAllApi.data)
     }catch(error){
         return(error)
@@ -17,12 +20,19 @@ const getAllApi = async () =>{
 const getApi = async () =>{
     try{
         const infoApi = await axios.get(
-            /* `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true` */
-            'https://run.mocky.io/v3/64dfef83-658b-47e0-a079-8e106c0bc34a'
+            `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true`
+            /* 'https://run.mocky.io/v3/64dfef83-658b-47e0-a079-8e106c0bc34a' */
             );
         const dataApi = infoApi.data;
         const results = dataApi.results;
         
+        const recetas_db= await Recipe.findAll({
+            include:[{
+                model:Diet,
+                attributes:["name"]
+            }]
+        });
+
         const apiMap =  results.map(el =>{
             let step = el.analyzedInstructions.map(a=>{
                 return a.steps.map(as=>{
@@ -35,12 +45,31 @@ const getApi = async () =>{
                 summary: el.summary,
                 healthScore: el.healthScore,
                 steps: step[0],
-                diets: el.diets,
+                diets: el.diets.map(e=>{
+                    return{
+                        name: e
+                    }
+                }),
                 img: el.image,
             })
         })
-        
-        return (apiMap)
+        const conjunto = [...recetas_db, ...apiMap]
+        const arrConj = conjunto.map(i=>{
+            const arrDiets = i.diets.map(diet=>{
+                return diet.name
+            });
+            
+            return{
+                id: i.id,
+                name: i.name,
+                summary: i.summary,
+                healthScore: i.healthScore,
+                steps: i.steps,
+                diets: arrDiets,
+                img: i.img,
+            }
+        })
+        return (arrConj)
         
     }catch(error){
         return(error)
@@ -48,43 +77,42 @@ const getApi = async () =>{
 };
 
 const getDiets = async () =>{
-    const arrDiets = []
-    try{
-        const infoDiets = await getAllApi();
-        const allDiets = infoDiets.results.map(el =>{
-            el.diets.forEach(di => {
-                arrDiets.push(di)
-            });
-        })
-        const notRepeat = new Set(arrDiets);
-        const finalArr = [...notRepeat]
-        return(finalArr)
-    }catch(error){
-        return (error)
+    let diets=["dairy free","gluten free","lacto ovo vegetarian","vegan","pescatarian","paleolithic","primal","whole 30"];
+    try {
+        const diet_types= diets.map(async dieta=>{
+            return await Diet.findOrCreate({
+                where:{name:dieta},
+                defaults:{
+                    name:dieta
+                }
+            })
+        });
+    } catch (error) {
+        console.log(error)
     }
 };
 
 const getById = async (id) =>{
-    let step2 = el.analyzedInstructions.map(a=>{
-        return a.steps.map(as=>{
-            return(`Paso ${as.number}: ${as.step}.`)
-        })
-    });
     try{
         const recipe = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}`)
         const dataRecipe = recipe.data;
+        const stepAll = dataRecipe.analyzedInstructions.map(a=>{
+            return a.steps.map(as=>{
+                return(`Paso ${as.number}: ${as.step}.`)
+            })
+        });
         const dataAll ={
             id:dataRecipe.id,
             name: dataRecipe.title,
             summary: dataRecipe.summary,
             healthScore: dataRecipe.healthScore,
-            steps: step2[0],
+            steps: stepAll[0],
             diets: dataRecipe.diets,
             img: dataRecipe.image,
         }
         return(dataAll)
     }catch(error){
-        return(error)
+        return error
     }
 }
 const getByName = async (arg) =>{

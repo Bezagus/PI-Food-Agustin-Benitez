@@ -10,6 +10,15 @@ export function getRecipe(){
         })
     }
 };
+export function getDiets(){
+    return async function(dispatch){
+        var json = await axios.get('http://localhost:3001/diets');
+        return dispatch({
+            type: 'GET_DIETS',
+            payload: json.data
+        })
+    }
+}
 
 export function cleanRecipe(payload){
     return{
@@ -62,6 +71,14 @@ export function searchBar(payload){
     return{
         type: 'SEARCH_BAR',
         payload: payload,
+    }
+};
+
+export function postRecipe(payload){
+    return async function(dispatch){
+        const postAxios = await axios.post('http://localhost:3001/recipes',payload)
+        console.log(postAxios)
+        return postAxios
     }
 }
 

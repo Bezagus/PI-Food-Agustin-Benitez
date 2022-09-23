@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipe, cleanRecipe } from "../../Actions";
+import { getRecipe, cleanRecipe, getDiets } from "../../Actions";
 import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import Card from "../Card/Card";

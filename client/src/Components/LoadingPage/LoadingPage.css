@@ -1,9 +1,9 @@
 
   
   #load {
-    border-radius: 10px;
+    border-radius: 10 px;
     margin-top: 300px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     position:absolute;
     width:600px;
     height:36px;
@@ -32,7 +32,7 @@
     -o-transform:rotate(180deg);
     -moz-transform:rotate(180deg);
     -webkit-transform:rotate(180deg);
-    color:#7700ff;
+    color:#ffffff;
   }
   
   #load div:nth-child(2) {

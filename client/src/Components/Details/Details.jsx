@@ -9,36 +9,32 @@ import LoadingPage from "../LoadingPage/LoadingPage";
 export default function Details(){
     const {id} = useParams();
     const dispatch = useDispatch();
-    const detail = useSelector((state)=> state.detail);
+    const details = useSelector((state)=> state.detail);
 
     useEffect(()=>{
-        return ()=> {
-            dispatch(cleanDetail())
-        }
-    },[dispatch]);
+        dispatch(cleanDetail())
+    },[])
 
     useEffect(()=>{
         dispatch(detailCard(id))
-    },[dispatch,id])
+    },[])
 
 
     return(
         <div>
-            {
-                detail.length > 0?
                     <div>
                     
                         <Nav/>
 
                         <div>
-                            <h2>{detail.name}</h2>
-                            <img src={detail.img} alt={`img ${detail.name}`}/>
-                            <h3>Score: {detail.score}</h3>
-                            <h3>Health Score: {detail.healthScore}</h3>
+                            <h2>{details.name}</h2>
+                            <img src={details.img} alt={`img ${details.name}`}/>
+                            <h3>Score: {details.score}</h3>
+                            <h3>Health Score: {details.healthScore}</h3>
                             <h3>Dieta:</h3>
                             <ul>
                             {
-                                detail.diets && detail.diets.map(e=>{
+                                details.diets && details.diets.map(e=>{
                                     return(
                                         <li>{e}</li>
                                     )
@@ -48,7 +44,7 @@ export default function Details(){
                             <h4>Paso a paso: </h4>
                             <ul>
                             {
-                                detail.steps && detail.steps.map(el=>{
+                                details.steps && details.steps.map(el=>{
                                     return(
                                      <li>{el}</li>
                                     )
@@ -57,9 +53,7 @@ export default function Details(){
 
                         </ul>
                         </div>
-                    </div>:
-                    <LoadingPage/>
-            }
+                    </div>
         </div>
     )
 };
