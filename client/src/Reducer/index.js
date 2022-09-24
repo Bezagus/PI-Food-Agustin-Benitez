@@ -102,6 +102,11 @@ function rooReducer (state= initialState, action){
             return{
                 ...state,
             }
+        case 'DELETE_RECIPE':
+            
+            return{
+                ...state,
+            }
         default: 
          return{
             ...state

@@ -77,8 +77,17 @@ export function searchBar(payload){
 export function postRecipe(payload){
     return async function(dispatch){
         const postAxios = await axios.post('http://localhost:3001/recipes',payload)
-        console.log(postAxios)
         return postAxios
+    }
+}
+
+export function deleteDb(payload){
+    return async function(dispatch){
+        const deleteAxios = await axios.delete(`http://localhost:3001/recipes/${payload}`)
+        return {
+            type:'DELETE_RECIPE',
+            payload: payload
+        }
     }
 }
 

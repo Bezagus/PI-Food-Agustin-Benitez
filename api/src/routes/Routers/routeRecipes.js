@@ -1,7 +1,7 @@
 const express = require('express');
 const {Recipe, Diet} = require('../../db.js');
 const axios = require('axios');
-const {getApi, getById, getByName, getByIdDb} = require('../Middleware/middlewares');
+const {getApi, getById, getByName, getByIdDb, getAllApi} = require('../Middleware/middlewares');
 
 
 
@@ -64,6 +64,29 @@ router.post('/', async (req, res) =>{
         return res.status(200).send('Receta creada correctamente')
     }
     res.status(404).send('No se pudo Crear receta')
+})
+router.delete('/:id', async (req, res) =>{
+    const {id} = req.params
+
+    const verification = await Recipe.findAll({
+        where:{
+            id: id
+        }
+    });
+
+    if(!id){
+        return res.status(404).send('no hay id');
+    }else if(!verification.length){
+        return res.status(404).send('Id incorrecto');
+    }
+    else{
+         await Recipe.destroy({
+            where: {
+            id: id
+            }
+            });
+        return res.status(200).send('Se elimino');
+    }
 })
 
 module.exports = router;

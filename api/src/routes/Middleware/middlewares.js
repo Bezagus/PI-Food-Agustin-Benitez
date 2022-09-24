@@ -51,6 +51,7 @@ const getApi = async () =>{
                     }
                 }),
                 img: el.image,
+                createdInDb: false
             })
         })
         const conjunto = [...recetas_db, ...apiMap]
@@ -67,6 +68,7 @@ const getApi = async () =>{
                 steps: i.steps,
                 diets: arrDiets,
                 img: i.img,
+                createdInDb: i.createdInDb
             }
         })
         return (arrConj)

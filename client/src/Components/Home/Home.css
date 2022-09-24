@@ -1,6 +1,7 @@
 body {
     overflow: auto;
 }
+
 .home_container{
     display: flex;
     flex-direction: row;

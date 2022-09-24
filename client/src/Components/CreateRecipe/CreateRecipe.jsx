@@ -80,9 +80,19 @@ export default function CreateRecipe(){
         if(!input.diet.length){
             return(alert('Tu receta Necesita Dietas'))
         }
-        if(!input.img || input.img.length > 255){
+        if(input.img.length > 255){
+            return(alert('Url de imgen incorrecta'))
+        }
+        if(input.name.length > 255){
+            return(alert('Nombre muy largo'))
+        }
+        if(!input.img){
                 input.img ='https://bestessayseducation.com/uploads/71/TEXT_HERE.png'
         }
+        else if (
+            !/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#()?&//=]*)/.test(input.img)) {
+            return alert("Url imagen invalida");
+            }
         dispatch(postRecipe(input))
         alert('Receta Creada!!')
         setInput({

@@ -36,23 +36,23 @@ export default function Home(){
         dispatch(getRecipe());
     }
     return(
-        <div>
+        <div className="parent">
             {
                 allRecipes.length > 0 ? 
                 <div> 
-                    <Nav/>
+                    <Nav className='div1'/>
             <div className='home_container'>
                 <div className='container_filter'>
-                    <Filters/>
+                    <Filters className='div2'/>
                     <button onClick={e=>handleClik(e)} className='btn_clear'>Refrescar</button>
                 </div>
-                <div className='constainer_Cards'>
+                <div className='constainer_Cards div3'>
                     <div className='cards_container'>
                         {
                             currentRecipes?.map(el=>{
                                 return(
                                     <div>
-                                    <Card img={el.img} name={el.name} diets={el.diets} id={el.id}  healthScore={el.healthScore}/>
+                                    <Card img={el.img} name={el.name} diets={el.diets} id={el.id}  healthScore={el.healthScore} createdInDb={el.createdInDb}/>
                                     </div>
                                 )
                             })
@@ -67,7 +67,7 @@ export default function Home(){
                     pagination={pagination}
                 />
             </div>
-                </div> : 
+                </div>: 
                 <LoadingPage/>
 
             }
