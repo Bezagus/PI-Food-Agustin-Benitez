@@ -49,11 +49,11 @@ body {
     margin-top: 3vh;
     width: 8vw;
     height: 5vh;
-    background-color:rgba(0, 0, 0, 0.8);
-    color: #666;
+    background-color:rgba(0, 0, 0, 0.9);
+    color: rgb(138, 138, 138);
     border: none;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.651);
+    box-shadow: 0px 0px 2px 0px rgba(255, 255, 255, 0.651);
     font-family: 'Verdana', sans-serif;
     font-size: 0.98rem;
     text-align: center;

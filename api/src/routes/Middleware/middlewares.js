@@ -61,7 +61,7 @@ const getApi = async () =>{
             
             return{
                 id: i.id,
-                name: i.name,
+                name: i.name.toLowerCase(),
                 summary: i.summary,
                 healthScore: i.healthScore,
                 steps: i.steps,
@@ -115,6 +115,22 @@ const getById = async (id) =>{
         return error
     }
 }
+const getByIdDb = async(arg)=>{
+    let receta_db= await Recipe.findByPk(arg,{
+        include:Diet
+    });
+    return ({
+        id: receta_db.id,
+        name: receta_db.name.toLowerCase(),
+        summary: receta_db.summary,
+        healthScore:receta_db.healthScore,
+        steps: [receta_db.steps],
+        img: receta_db.img,
+        diets: receta_db.diets.map(el=>{
+            return(el.name)
+        })
+    })
+}
 const getByName = async (arg) =>{
     try{
         const allData = await getApi();
@@ -131,5 +147,6 @@ module.exports = {
     getDiets,
     getById,
     getByName,
+    getByIdDb
 }
   

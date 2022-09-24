@@ -19,41 +19,51 @@ export default function Details(){
         dispatch(detailCard(id))
     },[])
 
-
+    const allsteps = details.steps? details.steps : ['No Posee Pasos a Receta']
     return(
         <div>
-                    <div>
+            {
+                details.id?
+                <div>
                     
-                        <Nav/>
+                <Nav/>
 
-                        <div>
-                            <h2>{details.name}</h2>
-                            <img src={details.img} alt={`img ${details.name}`}/>
-                            <h3>Score: {details.score}</h3>
-                            <h3>Health Score: {details.healthScore}</h3>
-                            <h3>Dieta:</h3>
-                            <ul>
-                            {
-                                details.diets && details.diets.map(e=>{
-                                    return(
-                                        <li>{e}</li>
-                                    )
-                                })
-                            }
-                            </ul>
-                            <h4>Paso a paso: </h4>
-                            <ul>
-                            {
-                                details.steps && details.steps.map(el=>{
-                                    return(
-                                     <li>{el}</li>
-                                    )
-                                })
-                            }
-
-                        </ul>
-                        </div>
+                <div className="div-container-detail">
+                    <img src={details.img} alt={`img ${details.name}`} className='img-detail'/>
+                    <h2 className="detail-name">{details.name}</h2>
+                    <h3 className="detail-score">Health Score: <b className="number">{details.healthScore}</b></h3>
+                    <div className="detail-diet">
+                    <h3 className="title-diet">Dieta:</h3>
+                    <ul>
+                    {
+                        details.diets && details.diets.map(e=>{
+                            return(
+                                <li  className="li-diet">|| {e[0].toUpperCase()+e.slice(1)} ||</li>
+                            )
+                        })
+                    }
+                    </ul>
                     </div>
+                    <h4 className="paso-detail">Paso a paso: </h4>
+                    <ul className="steps-detail">
+                    
+                    {
+                        allsteps && allsteps.map(el=>{
+                            return(
+                             <li className="li-steps">{el}</li>
+                            )
+                        })
+                    }
+
+                </ul>
+                </div>
+            </div>:
+            <div>
+            <Nav/>
+            <LoadingPage/>
+            </div>
+            }
+                    
         </div>
     )
 };

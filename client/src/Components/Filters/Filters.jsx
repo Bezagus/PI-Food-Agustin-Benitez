@@ -26,9 +26,9 @@ export default function Filters(){
                 <SearchBar/>
             </div>
             <dv>
-                <h4 className="h4">Filtros</h4>
-                <h5 className="h4">Dieta</h5>
-                <select className='select_constiner' onChange={e=>handleFilterDiet(e)}>
+                <h4 className="h4 title-filter">Filtros</h4>
+                <h5 className="h4 title-fil">Dieta</h5>
+                <select className='select_constiner select' onChange={e=>handleFilterDiet(e)}>
                     <option value='default'>Todos</option>
                     <option value='gluten free'>Gluten free</option>
                     <option value='lacto ovo vegetarian'>Lacto ovo vegetarian</option>
@@ -40,13 +40,13 @@ export default function Filters(){
                     <option value='pescatarian'>Pescatarian</option>
                 </select>
                 <h5 className="h4">Alfabeticamente</h5>
-                <select className='select_constiner' onChange={e=>handleOrdenByName(e)}>
+                <select className='select_constiner select' onChange={e=>handleOrdenByName(e)}>
                     <option value='default'>Default</option>
                     <option value='asc'>Asendente</option>
                     <option values='desc'>Desendente</option>
                 </select>
                 <h5 className="h4">Nivel Saludable</h5>
-                <select className='select_constiner' onChange={e=>handleOrdenByScore(e)}>
+                <select className='select_constiner select' onChange={e=>handleOrdenByScore(e)}>
                     <option value='default'>Default</option>
                     <option value='asc'>Asendente</option>
                     <option value='desc'>Desendente</option>

@@ -1,7 +1,7 @@
 const express = require('express');
 const {Recipe, Diet} = require('../../db.js');
 const axios = require('axios');
-const {getApi, getById, getByName} = require('../Middleware/middlewares');
+const {getApi, getById, getByName, getByIdDb} = require('../Middleware/middlewares');
 
 
 
@@ -28,8 +28,13 @@ router.get('/',async  (req, res)=>{
 });
 router.get('/:id',async (req, res) =>{
     const { id } = req.params
+    if(!isNaN(id)){
         const info = await getById(id);
         res.status(200).send(info)
+    }else{
+        const Db = await getByIdDb(id);
+        res.status(200).send(Db)
+    }
 })
 
 router.post('/', async (req, res) =>{
@@ -42,7 +47,7 @@ router.post('/', async (req, res) =>{
     const isRecipe = allRecipe.find(e=> e.name=== name );
     if(!isRecipe){
         const recipe = await Recipe.create({
-            name,
+            name: name.toLowerCase(),
             summary,
             healthScore,
             steps,
