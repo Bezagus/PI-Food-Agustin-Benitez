@@ -74,7 +74,7 @@ function rooReducer (state= initialState, action){
             return{
                 ...state,
                 axu: state.recipes,
-                recipes: action.payload === 'default'? state.aux : orderedRecipes2,
+                recipes: action.payload === 'default'? state.allRecipes : orderedRecipes2,
             } 
         case 'CLEAN_DETAIL':
             return{
@@ -88,7 +88,7 @@ function rooReducer (state= initialState, action){
             }
         case 'SEARCH_BAR':
             let resultSearch = [...state.allRecipes];
-            resultSearch= resultSearch.filter(el=> el.name.toLowerCase() === action.payload.toLowerCase());
+            resultSearch= resultSearch.filter(el=> el.name.toLowerCase().includes(action.payload.toLowerCase()));
             return{
                 ...state,
                 recipes: resultSearch.length > 0? resultSearch : state.recipes

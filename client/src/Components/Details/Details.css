@@ -1,4 +1,4 @@
-.div-container-detail{
+/* .div-container-detail{
     background-color: rgba(0, 0, 0, 0.8);
     width: 80%;
     margin-left: 10%;
@@ -56,4 +56,104 @@
 .li-steps{
     color: #000;
     font-size: 20px;
+} */
+
+@import url('https://fonts.googleapis.com/css?family=Oxygen:400,700');
+
+#card-container {
+  background: #000000;
+  box-shadow: 0px 0px 200px #999;
+  font-family: 'Oxygen', sans-serif;
+  width: 65%;
+  height: 385px;
+  margin: 5% auto;
+}
+
+#card-title {
+  font-family: 'Oxygen', sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  background: #455560;
+  padding: 15px 20px;
+  color: rgb(255, 255, 255);
+  border-radius: 2px 2px 0 0;
+}
+
+#details {
+  color: #fff;
+  background: rgb(105, 105, 105);
+  border-left: solid 1px #ededed;
+  border-right: solid 1px #ededed;
+  font-size: 16px;
+  font-family: 'Oxygen', sans-serif;
+  padding: 15px 20px;
+}
+
+.detail-value {
+  color: #ffffff;
+}
+
+#card-items {
+  color: #fff;
+  background: #000000;
+  font-family: 'Oxygen', sans-serif;
+  padding: 20px
+}
+
+.card-item-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+ul.checkmark li:before {
+    color: #455560;
+    content:"\2713\0020";
+    font-weight: 600;
+    margin-left: -38px;
+    margin-right: 10px;
+}
+
+.checkmark li {
+  list-style-type: none;
+}
+
+li {
+  margin-bottom: 3px;
+}
+
+#method {
+  color: #fff;
+  background: rgb(0, 0, 0);
+  border-left: solid 1px #ededed;
+  border-right: solid 1px #ededed;
+  border-bottom: solid 1px #ededed;
+  padding: 20px;
+}
+
+#method li {
+  list-style-position: inside;
+  margin-bottom: 10px;
+  margin-left: -38px;
+  list-style-type: none;
+}
+
+#recipe-image {
+  overflow: hidden;
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+ol {
+  counter-reset: item;
+}
+
+ol > li {
+  counter-increment: item;
+}
+
+ol > li::before {
+  font-weight: bold;
+  content: counter(item) ".";
+  margin-right: 8px;
 }

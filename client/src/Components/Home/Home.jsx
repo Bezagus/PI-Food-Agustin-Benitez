@@ -39,37 +39,38 @@ export default function Home(){
         <div className="parent">
             {
                 allRecipes.length > 0 ? 
-                <div> 
+                <div className="dis-constainer"> 
                     <Nav className='div1'/>
-            <div className='home_container'>
-                <div className='container_filter'>
-                    <Filters className='div2'/>
-                    <button onClick={e=>handleClik(e)} className='btn_clear'>Refrescar</button>
-                </div>
-                <div className='constainer_Cards div3'>
-                    <div className='cards_container'>
-                        {
-                            currentRecipes?.map(el=>{
-                                return(
-                                    <div>
-                                    <Card img={el.img} name={el.name} diets={el.diets} id={el.id}  healthScore={el.healthScore} createdInDb={el.createdInDb}/>
-                                    </div>
-                                )
-                            })
-                        }
+                    <div className='home_container'>
+                        <div className='container_filter'>
+                            <Filters className='div2'/>
+                            <button onClick={e=>handleClik(e)} className='btn_clear'>Refrescar</button>
+                        </div>
+                        <div className='constainer_Cards div3'>
+                            <div className='cards_container'>
+                                {
+                                    currentRecipes?.map(el=>{
+                                        return(
+                                            <div>
+                                                <Card img={el.img} name={el.name} diets={el.diets} id={el.id}  healthScore={el.healthScore} createdInDb={el.createdInDb}/>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className='pagination_home'>
-                <Paginated
-                    recipesPerPage={recipesPerPage}
-                    allRecipes={allRecipes.length}
-                    pagination={pagination}
-                />
-            </div>
+                    <div className='pagination_home'>
+                        <Paginated
+                            recipesPerPage={recipesPerPage}
+                            allRecipes={allRecipes.length}
+                            pagination={pagination}
+                            currentRecipes={currentRecipes}
+                            currentPage={currentPage}
+                        />
+                    </div>
                 </div>: 
                 <LoadingPage/>
-
             }
             
         </div>

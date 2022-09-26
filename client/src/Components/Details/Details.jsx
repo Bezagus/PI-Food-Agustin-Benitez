@@ -24,11 +24,50 @@ export default function Details(){
         <div>
             {
                 details.id?
-                <div>
-                    
-                <Nav/>
+                    <div>
+                        <Nav/>
+                        <div id="card-container">
+                            <div id="card-title">{details.name}</div>
+                            <img src={details.img} alt={`img ${details.name}`} id="recipe-image"/>
+                            <div id="details">Health Score: <span class="detail-value">{details.healthScore}</span></div>
+                            <div id="card-items">
+                                <h3 class="card-item-title">Dietas</h3>
+                                <ul class="checkmark">
+                                  {
+                                    details.diets && details.diets.map(e=>{
+                                        return(
+                                            <div>
+                                            <li>{e[0].toUpperCase()+e.slice(1)}</li><br></br>
+                                            </div>
+                                        )
+                                    })
+                                  }
+                                </ul>
+                            </div>
+                            <div id="method">
+                                <span class="card-item-title">Pasos:</span>
+                                <ol>
+                                    {
+                                        allsteps && allsteps.map(el=>{
+                                            return(
+                                            <li className="li-steps">{el}</li>
+                                            )
+                                        })
+                                    }
+                                </ol>
+                            </div>
+                        </div>
+                    </div>:
+                    <div>
+                        <Nav/>
+                        <LoadingPage/>
+                    </div>
+            }      
+        </div>
+    )
+};
 
-                <div className="div-container-detail">
+{/* <div className="div-container-detail">
                     <img src={details.img} alt={`img ${details.name}`} className='img-detail'/>
                     <h2 className="detail-name">{details.name}</h2>
                     <h3 className="detail-score">Health Score: <b className="number">{details.healthScore}</b></h3>
@@ -56,14 +95,4 @@ export default function Details(){
                     }
 
                 </ul>
-                </div>
-            </div>:
-            <div>
-            <Nav/>
-            <LoadingPage/>
-            </div>
-            }
-                    
-        </div>
-    )
-};
+                </div> */}
