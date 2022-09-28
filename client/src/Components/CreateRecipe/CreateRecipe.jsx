@@ -33,7 +33,13 @@ export default function CreateRecipe(){
         }else if (!input.summary){
             errors.summary = "Tu Receta necesita un Resumen!"
         } else if(input.img.length > 255){
-            errors.img = "Url hasta 255 caracteres"
+            errors.img = `Url hasta 255 caracteres(Caracteres:${input.img.length})`
+        }else if(input.summary.length > 255){
+            errors.summary = `Summary hasta 255 caracteres(Caracteres:${input.summary.length})`
+        }else if(input.steps.length > 255){
+            errors.steps = `Steps hasta 255  caracteres(Caracteres:${input.steps.length})`
+        }else if(input.name.length > 255){
+            errors.steps = `Name hasta 255  caracteres(Caracteres:${input.steps.length})`
         }
         return errors
     }
@@ -72,29 +78,41 @@ export default function CreateRecipe(){
 
     function handleSubmit(e){
         if(!input.name){
-            return(alert('Nombre Obligatorio'))
+            alert('Nombre required')
+            return(false)
         }
         if(!input.summary){
-            return(alert('Summary Obligatorio'))
+            return(alert('Summary required'))
         }
         if(!input.diet.length){
-            return(alert('Tu receta Necesita Dietas'))
+            return(alert('Your Reipe required Diet'))
         }
         if(input.img.length > 255){
-            return(alert('Url de imgen incorrecta'))
+            return(alert('Url de imgen invalid'))
         }
         if(input.name.length > 255){
-            return(alert('Nombre muy largo'))
+            return(alert('Name very long'))
+        }
+        if(input.summary.length > 255){
+            return(alert('Summary very long'))
+        }
+        if(input.steps.length > 255){
+            return(alert('Steps very long'))
+        }
+        if(input.healthScore > 100 || input.healthScore < 0){
+            return(alert('Health Score invalid'))
+        }
+        if(!input.steps){
+            input.steps = 'your recipe has no steps'
         }
         if(!input.img){
                 input.img ='https://bestessayseducation.com/uploads/71/TEXT_HERE.png'
         }
-        else if (
-            !/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#()?&//=]*)/.test(input.img)) {
-            return alert("Url imagen invalida");
+        else if (!/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#()?&//=]*)/.test(input.img)) {
+            return alert("Url imagen invalid");
             }
         dispatch(postRecipe(input))
-        alert('Receta Creada!!')
+        alert('Recipe Created!!')
         setInput({
             name:"",
             summary:"",
@@ -111,53 +129,60 @@ export default function CreateRecipe(){
         dispatch(getDiets())
     },[dispatch]);
 
+    const selecDiet = input.diet.join(' ,')
+
     return(
         <div>
             <Nav/>
             <div className="div__constiner">
                 <form onSubmit={(e) => handleSubmit(e)} className='form'>
-                    <h1 className="title">Creato tu Receta</h1>
+                    <h1 className="title">Create Your Recipe</h1>
                     <div>
                         <div>
-                            <h3 className="label_cont">Nombre:</h3>
-                            <input className="input_cont" type='text' value={input.name} name='name' onChange={(e) => handleChange(e)}/>
+                            <h3 className="label_cont">Name:</h3>
+                            <input className="input_cont" type='text' value={input.name} name='name' onChange={(e) => handleChange(e)} onPaste={(e) => handleChange(e)}/>
                             {errors.name && (<p className="error">{errors.name}</p>)}
                         </div>
                         <div className="cont-box">
-                            <h3 className="label_cont dieta">Dietas</h3>
+                            <h3 className="label_cont dieta">Diets:</h3>
                             {allDiets.map(el=>{
                                 return(
                                     <label className="checkbox">
-                                        <input type='checkbox' name={el.name} value={el.name} onChange={(e) => handleCheck(e)}/>
+                                        <input type='checkbox' name={el.name} value={el.name} onChange={(e) => handleCheck(e)} onPaste={(e) => handleCheck(e)}/>
                                         {el.name}
                                     </label>
                                 )
                             })}
                             {errors.diet && (<p className="error">{errors.diet}</p>)}
-
-                            <ul><li className="li-select">{input.diet.map(el=> el + ' ;')}</li></ul>
+                            {
+                                selecDiet && <p className="select-diets">{selecDiet}</p>
+                            }
                         </div>
                         <div>
                             <h3 className="label_cont">Summary:</h3>
-                            <textarea className='input_cont resumen' type='text' value={input.summary} name='summary' onChange={(e) => handleChange(e)}/>
+                            <textarea className='input_cont resumen' type='text' value={input.summary} name='summary' onChange={(e) => handleChange(e)} onPaste={(e) => handleChange(e)}/>
                             {errors.summary && (<p className="error">{errors.summary}</p>)}
                         </div>
                         <div>
                             <h3 className="label_cont ">Health Score:</h3>
+                            <div>
                             <input className='input_cont score' type="range" min="0" max="100" value={input.healthScore} name='healthScore' onChange={(e) => handleChange(e)}/>
+                            <span className="score-text">{input.healthScore}</span>
+                            </div>
                         </div>
                         <div>
-                            <h3 className="label_cont">Imagen:</h3>
-                            <input className='input_cont' type='text' value={input.img} name='img' onChange={(e) => handleChange(e)}/>
+                            <h3 className="label_cont">Url Image:</h3>
+                            <input className='input_cont' type='text' value={input.img} name='img' onChange={(e) => handleChange(e)} onPaste={(e) => handleChange(e)}/>
                             {errors.img && (<p className="error">{errors.img}</p>)}
                         </div>
                         <div>
-                            <h3 className="label_cont">Instrucciones:</h3>
-                            <textarea className='input_cont textarea' type='text' value={input.steps} name='steps'onChange={(e) => handleChange(e)}/>
+                            <h3 className="label_cont">Steps:</h3>
+                            <textarea className='input_cont textarea' type='text' value={input.steps} name='steps'onChange={(e) => handleChange(e)} onPaste={(e) => handleChange(e)}/>
+                            {errors.steps && (<p className="error">{errors.steps}</p>)}
                         </div>
                         
                         
-                        <button type='submit' className='button-36-Nav3 btn_submit'>Crear</button>
+                        <button type='submit' className='button-Nav3 btn_submit'>To Crete</button>
                     </div>
                 </form>
             </div>

@@ -23,8 +23,8 @@ export default function SearchBar(){
     return(
         <div className="wrapper">
             <form onSubmit={e => {handleSubmit(e)}}>
-                <input type="text" placeholder="Nombre..." onChange={e => {handleInputChange(e)}} value={name} className='search' />
-                <button type="submit"  className="submit">Buscar</button>
+                <input type="text" placeholder="Name..." onChange={e => {handleInputChange(e)}} value={name} className='search' />
+                <button type="submit"  className="submit">Search.</button>
             </form>
         </div>
     )

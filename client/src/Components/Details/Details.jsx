@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
+import { Link } from 'react-router-dom';
 import { cleanDetail, detailCard } from '../../Actions';
 import Nav from '../Nav 2/Nav.jsx';
 import './Details.css';
@@ -27,25 +28,19 @@ export default function Details(){
                     <div>
                         <Nav/>
                         <div id="card-container">
-                            <div id="card-title">{details.name}</div>
+                            <h1 id="card-title">{details.name}</h1>
                             <img src={details.img} alt={`img ${details.name}`} id="recipe-image"/>
                             <div id="details">Health Score: <span class="detail-value">{details.healthScore}</span></div>
+                            <div id="summary">
+                                <h3>Summary:</h3>
+                                <span>{details.summary}</span>
+                            </div>
                             <div id="card-items">
-                                <h3 class="card-item-title">Dietas</h3>
-                                <ul class="checkmark">
-                                  {
-                                    details.diets && details.diets.map(e=>{
-                                        return(
-                                            <div>
-                                            <li>{e[0].toUpperCase()+e.slice(1)}</li><br></br>
-                                            </div>
-                                        )
-                                    })
-                                  }
-                                </ul>
+                                <h3 class="card-item-title">Diets:</h3>
+                                <p>{details.diets.join(' ,')}</p>
                             </div>
                             <div id="method">
-                                <span class="card-item-title">Pasos:</span>
+                                <span class="card-item-title">Steps:</span>
                                 <ol>
                                     {
                                         allsteps && allsteps.map(el=>{
@@ -56,6 +51,9 @@ export default function Details(){
                                     }
                                 </ol>
                             </div>
+                            <Link to='/home'>
+                                <button className="button-home">More recipes</button>
+                            </Link>
                         </div>
                     </div>:
                     <div>

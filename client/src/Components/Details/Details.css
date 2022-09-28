@@ -1,62 +1,3 @@
-/* .div-container-detail{
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 40px;
-    border-radius: 10px;
-}
-.img-detail{
-    margin: 10px 0;
-    object-fit: cover;
-}
-.detail-name{
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #000;
-    margin: 20px 20px;
-    padding: 10px 0;
-    border-radius: 2px;
-}
-.detail-score{
-    font-size: 15px;
-    background-color: rgba(255, 251, 0, 0.8);
-    color: #000;
-    margin: 20px 450px;
-    padding: 10px 0;
-    border-radius: 40px;
-}
-.detail-diet{
-    color: #000;
-    display: flex;
-    align-items: center;
-    align-self: center;
-    align-content: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    margin: 0 250px;
-    border-radius: 2px;
-    padding: 0;
-}
-.title-diet{
-    font-size: 15px;
-}
-.li-diet{
-    color: #000;
-    font-size: 15px;
-}
-.paso-detail{
-    border-radius: 2px;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: #000;
-    margin: 20px 30%;
-}
-.steps-detail{
-    border-radius: 2px;
-    background-color: rgba(255, 255, 255, 0.8);
-    margin: 20px 20px ;
-}
-.li-steps{
-    color: #000;
-    font-size: 20px;
-} */
 
 @import url('https://fonts.googleapis.com/css?family=Oxygen:400,700');
 
@@ -67,6 +8,7 @@
   width: 65%;
   height: 385px;
   margin: 5% auto;
+  border-radius: 8px;
 }
 
 #card-title {
@@ -76,17 +18,18 @@
   background: #455560;
   padding: 15px 20px;
   color: rgb(255, 255, 255);
-  border-radius: 2px 2px 0 0;
+  margin-bottom: 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 #details {
   color: #fff;
-  background: rgb(105, 105, 105);
-  border-left: solid 1px #ededed;
-  border-right: solid 1px #ededed;
+  background: rgba(105, 105, 105, 0.7);
   font-size: 16px;
   font-family: 'Oxygen', sans-serif;
   padding: 15px 20px;
+  margin-top: -10px;
 }
 
 .detail-value {
@@ -95,9 +38,9 @@
 
 #card-items {
   color: #fff;
-  background: #000000;
+  background: rgba(105, 105, 105, 0.9);
   font-family: 'Oxygen', sans-serif;
-  padding: 20px
+  padding: 20px;
 }
 
 .card-item-title {
@@ -105,28 +48,9 @@
   font-weight: 700;
 }
 
-ul.checkmark li:before {
-    color: #455560;
-    content:"\2713\0020";
-    font-weight: 600;
-    margin-left: -38px;
-    margin-right: 10px;
-}
-
-.checkmark li {
-  list-style-type: none;
-}
-
-li {
-  margin-bottom: 3px;
-}
-
 #method {
   color: #fff;
-  background: rgb(0, 0, 0);
-  border-left: solid 1px #ededed;
-  border-right: solid 1px #ededed;
-  border-bottom: solid 1px #ededed;
+  background: rgba(0, 0, 0, 0.9);
   padding: 20px;
 }
 
@@ -142,18 +66,25 @@ li {
   height: 400px;
   width: 100%;
   object-fit: cover;
+  margin: 0;
 }
-
-ol {
-  counter-reset: item;
+#summary{
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 50px;
 }
-
-ol > li {
-  counter-increment: item;
+.button-home{
+  width: 100%;
+  height: 50px;
+  margin: 0;
+  background-color: rgba(105, 105, 105, 0.9);
+  font-size: 20px;
+  cursor: pointer;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin-bottom: 30px;
 }
-
-ol > li::before {
-  font-weight: bold;
-  content: counter(item) ".";
-  margin-right: 8px;
+.button-home:hover{
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
 }

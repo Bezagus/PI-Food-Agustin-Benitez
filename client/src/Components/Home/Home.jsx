@@ -15,7 +15,7 @@ export default function Home(){
     const allRecipes = useSelector((state)=> state.recipes);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const [recipesPerPage, setRecipesPerPage] = useState(12);
+    const [recipesPerPage, setRecipesPerPage] = useState(9);
     const [order, setOrder] = useState('');
     const indexOfLastRecipes = currentPage * recipesPerPage;
     const indexOfFirstRecipes = indexOfLastRecipes - recipesPerPage;
@@ -31,10 +31,7 @@ export default function Home(){
     },[dispatch]);
     
 
-    function handleClik(e){
-        e.preventDefault();
-        dispatch(getRecipe());
-    }
+    
     return(
         <div className="parent">
             {
@@ -44,7 +41,6 @@ export default function Home(){
                     <div className='home_container'>
                         <div className='container_filter'>
                             <Filters className='div2'/>
-                            <button onClick={e=>handleClik(e)} className='btn_clear'>Refrescar</button>
                         </div>
                         <div className='constainer_Cards div3'>
                             <div className='cards_container'>

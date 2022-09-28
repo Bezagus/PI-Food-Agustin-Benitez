@@ -14,7 +14,7 @@ const getAllApi = async () =>{
             );
         return (infoAllApi.data)
     }catch(error){
-        return(error)
+        return(Error(error))
     }
 }
 const getApi = async () =>{
@@ -42,7 +42,7 @@ const getApi = async () =>{
             return({
                 id: el.id,
                 name: el.title.toLowerCase(),
-                summary: el.summary,
+                summary: el.summary.replace(/<[^>]+>/g, ""),
                 healthScore: el.healthScore,
                 steps: step[0],
                 diets: el.diets.map(e=>{
@@ -74,7 +74,7 @@ const getApi = async () =>{
         return (arrConj)
         
     }catch(error){
-        return(error)
+        return(Error(error))
     }
 };
 
@@ -90,7 +90,7 @@ const getDiets = async () =>{
             })
         });
     } catch (error) {
-        console.log(error)
+        return(Error(error))
     }
 };
 
@@ -100,13 +100,13 @@ const getById = async (id) =>{
         const dataRecipe = recipe.data;
         const stepAll = dataRecipe.analyzedInstructions.map(a=>{
             return a.steps.map(as=>{
-                return(`Paso ${as.number}: ${as.step}.`)
+                return(`Step ${as.number}: ${as.step}.`)
             })
         });
         const dataAll ={
             id:dataRecipe.id,
             name: dataRecipe.title,
-            summary: dataRecipe.summary,
+            summary: dataRecipe.summary.replace(/<[^>]+>/g, ""),
             healthScore: dataRecipe.healthScore,
             steps: stepAll[0],
             diets: dataRecipe.diets,
@@ -114,24 +114,29 @@ const getById = async (id) =>{
         }
         return(dataAll)
     }catch(error){
-        return error
+        return(Error(error))
     }
 }
 const getByIdDb = async(arg)=>{
-    let receta_db= await Recipe.findByPk(arg,{
-        include:Diet
-    });
-    return ({
-        id: receta_db.id,
-        name: receta_db.name.toLowerCase(),
-        summary: receta_db.summary,
-        healthScore:receta_db.healthScore,
-        steps: [receta_db.steps],
-        img: receta_db.img,
-        diets: receta_db.diets.map(el=>{
-            return(el.name)
+    try{
+        let receta_db= await Recipe.findByPk(arg,{
+            include:Diet
+        });
+        return ({
+            id: receta_db.id,
+            name: receta_db.name.toLowerCase(),
+            summary: receta_db.summary,
+            healthScore:receta_db.healthScore,
+            steps: [receta_db.steps],
+            img: receta_db.img,
+            diets: receta_db.diets.map(el=>{
+                return(el.name)
+            })
         })
-    })
+    }catch(error){
+        return(Error(error))
+    }
+    
 }
 const getByName = async (arg) =>{
     try{
@@ -139,7 +144,7 @@ const getByName = async (arg) =>{
         const nameApi = allData.filter(el=> el.name.toLocaleLowerCase().includes(arg.toLocaleLowerCase()));
         return(nameApi)
     }catch(error){
-        return(error)
+        return(Error(error))
     }
 }
 

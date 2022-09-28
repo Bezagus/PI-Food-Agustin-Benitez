@@ -44,7 +44,7 @@ router.post('/', async (req, res) =>{
         res.status(404).send('Nombre y Resumen Obligatorio')
     }
     const allRecipe = await getApi();
-    const isRecipe = allRecipe.find(e=> e.name=== name );
+    const isRecipe = await allRecipe.find(e=> e.name=== name );
     if(!isRecipe){
         const recipe = await Recipe.create({
             name: name.toLowerCase(),

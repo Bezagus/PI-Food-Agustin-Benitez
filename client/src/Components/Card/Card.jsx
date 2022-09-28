@@ -5,7 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import ButtonDelete from "../button delete/buttonDelete";
 import './Card.css'
 
-export default function Card({img, name, diets, id, createdInDb}){
+export default function Card({img, name, diets, id, createdInDb, healthScore}){
 
     const dispatch= useDispatch();
     const [input, setInput]= useState({
@@ -29,10 +29,13 @@ export default function Card({img, name, diets, id, createdInDb}){
                 }
             </div>
             <img src={img} alt={`receta ${name}`} className="img_recipe"/>
+            <div className='dietcont'>
             <h3 className="diets title-diets">Diets:</h3>
             <h3 className="diets"> {Alldiets}</h3>
+            </div>
+            <h6 className="diets">{healthScore}</h6>
             <Link to={`/recipes/${id}`}>
-                <button class="button-59" role="button">Mas Detalles</button>
+                <button class="button-more" role="button">More Details</button>
             </Link>
         </div>
     );

@@ -11,7 +11,7 @@ export default function Nav(){
         <div className="Nav2_Container">
             <h1 className="Nav2_Title">PI-Food Henry</h1>
             <Link to='/home'>
-                <button class="button-36-Nav2" role="button">Home</button>
+                <button class="button-Nav2" role="button">Home</button>
             </Link>
         </div>
     )
