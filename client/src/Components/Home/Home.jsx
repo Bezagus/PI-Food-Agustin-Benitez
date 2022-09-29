@@ -30,8 +30,6 @@ export default function Home(){
         dispatch(getRecipe())
     },[dispatch]);
     
-
-    
     return(
         <div className="parent">
             {
@@ -46,11 +44,11 @@ export default function Home(){
                             <div className='cards_container'>
                                 {
                                     currentRecipes?.map(el=>{
-                                        return(
-                                            <div>
-                                                <Card img={el.img} name={el.name} diets={el.diets} id={el.id}  healthScore={el.healthScore} createdInDb={el.createdInDb}/>
-                                            </div>
-                                        )
+                                            return(
+                                                <div>
+                                                    <Card img={el.img} name={el.name} diets={el.diets} id={el.id}  healthScore={el.healthScore} createdInDb={el.createdInDb}/>
+                                                </div>
+                                            )
                                     })
                                 }
                             </div>

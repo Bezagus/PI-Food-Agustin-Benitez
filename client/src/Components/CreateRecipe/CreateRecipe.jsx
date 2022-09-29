@@ -26,7 +26,7 @@ export default function CreateRecipe(){
 
     function validate(newRecipe){
         let errors = {};
-        if (!input.name){
+        if (!input.name.length){
             errors.name = "Tu Receta Necesita Nombre!"
         } else if (!input.diet.length){
             errors.diet = "Tu receta necesita dieta"
@@ -101,6 +101,9 @@ export default function CreateRecipe(){
         }
         if(input.healthScore > 100 || input.healthScore < 0){
             return(alert('Health Score invalid'))
+        }
+        if(!input.healthScore){
+            input.healthScore = '50'
         }
         if(!input.steps){
             input.steps = 'your recipe has no steps'

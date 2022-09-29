@@ -2,7 +2,7 @@ import React from "react";
 import './Paginated.css';
 
 
-export default function Paginated({recipesPerPage, allRecipes, pagination,currentPage, currentRecipes}){
+export default function Paginated({recipesPerPage, allRecipes, pagination,currentPage}){
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(allRecipes/recipesPerPage); i++) {
         pageNumbers.push(i);        
@@ -10,7 +10,6 @@ export default function Paginated({recipesPerPage, allRecipes, pagination,curren
 
     return(
         <nav>
-            
             <ul className="ul_list">
                 {
                     pageNumbers?.map(number => (
@@ -20,7 +19,6 @@ export default function Paginated({recipesPerPage, allRecipes, pagination,curren
                     ))
                 }
             </ul>
-            
         </nav>
     )
 };

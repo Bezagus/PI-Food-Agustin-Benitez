@@ -88,10 +88,11 @@ function rooReducer (state= initialState, action){
             }
         case 'SEARCH_BAR':
             let resultSearch = [...state.allRecipes];
+            let error = {error: 'there are no matches'}
             resultSearch= resultSearch.filter(el=> el.name.toLowerCase().includes(action.payload.toLowerCase()));
             return{
                 ...state,
-                recipes: resultSearch.length > 0? resultSearch : state.recipes
+                recipes: resultSearch.length > 0? resultSearch : state.allRecipes,
             }
         case 'ADD_RECIPE':
             return{
