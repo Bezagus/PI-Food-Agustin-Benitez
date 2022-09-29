@@ -34,8 +34,8 @@ body{
   text-align: center;
   color: #000;
   background-color: #f00;
-  border-radius: 50%;
-  margin: 7px;
+  border-radius: 50px;
+  margin: 10px;
 }
 .buttonDelete:hover{
   border: solid #f00 1px;
