@@ -6,13 +6,13 @@ body{
     position: relative;
     align-items: center;
     border-radius: 5px;
-    height: 380px;
+    height: 400px;
     width: 280px;
     background-color: rgba(0, 0, 0, 0.9);
 }
 .diets{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
+  margin-top: 5px;
  font-size: 9px;
  color: #aaa;
 }
@@ -33,7 +33,7 @@ body{
   grid-area: 1 / 5 / 2 / 6;
   text-align: center;
   color: #000;
-  background-color: #f00;
+  background-color: rgb(187, 0, 0);
   border-radius: 50px;
   margin: 10px;
 }

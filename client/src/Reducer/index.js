@@ -7,6 +7,7 @@ const initialState = {
     recipesFiltered: [],
     detail: [],
     aux:[],
+    favorites:[],
 
 }
 
@@ -88,7 +89,6 @@ function rooReducer (state= initialState, action){
             }
         case 'SEARCH_BAR':
             let resultSearch = [...state.allRecipes];
-            let error = {error: 'there are no matches'}
             resultSearch= resultSearch.filter(el=> el.name.toLowerCase().includes(action.payload.toLowerCase()));
             return{
                 ...state,
@@ -108,9 +108,15 @@ function rooReducer (state= initialState, action){
             return{
                 ...state,
             }
+        case 'ADD_FAVORITE':
+            const filterFavorite = state.allRecipes.filter(el => el.id === action.payload)
+            return{
+                ...state,
+                favorites:state.favorites.concat(filterFavorite)
+            }
         default: 
          return{
-            ...state
+            ...state,
          }
     }
 }

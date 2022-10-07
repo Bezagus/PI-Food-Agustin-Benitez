@@ -10,7 +10,6 @@ const getAllApi = async () =>{
     try{
         const infoAllApi = await axios.get(
             `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true`
-           /* 'https://run.mocky.io/v3/64dfef83-658b-47e0-a079-8e106c0bc34a' */
             );
         return (infoAllApi.data)
     }catch(error){
@@ -21,7 +20,6 @@ const getApi = async () =>{
     try{
         const infoApi = await axios.get(
             `https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&number=100&addRecipeInformation=true`
-            /* 'https://run.mocky.io/v3/64dfef83-658b-47e0-a079-8e106c0bc34a' */
             );
         const dataApi = infoApi.data;
         const results = dataApi.results;

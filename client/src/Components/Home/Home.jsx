@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipe, cleanRecipe, getDiets } from "../../Actions";
+import { getRecipe, cleanRecipe, getDiets, addFavorite } from "../../Actions";
 import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import Card from "../Card/Card";
@@ -16,7 +16,6 @@ export default function Home(){
 
     const [currentPage, setCurrentPage] = useState(1);
     const [recipesPerPage, setRecipesPerPage] = useState(9);
-    const [order, setOrder] = useState('');
     const indexOfLastRecipes = currentPage * recipesPerPage;
     const indexOfFirstRecipes = indexOfLastRecipes - recipesPerPage;
 
@@ -46,7 +45,9 @@ export default function Home(){
                                     currentRecipes?.map(el=>{
                                             return(
                                                 <div>
+                                                <div>
                                                     <Card img={el.img} name={el.name} diets={el.diets} id={el.id}  healthScore={el.healthScore} createdInDb={el.createdInDb}/>
+                                                </div>
                                                 </div>
                                             )
                                     })

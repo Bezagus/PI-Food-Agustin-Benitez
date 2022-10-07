@@ -64,7 +64,8 @@ router.post('/', async (req, res) =>{
         return res.status(200).send('Receta creada correctamente')
     }
     res.status(404).send('No se pudo Crear receta')
-})
+});
+
 router.delete('/:id', async (req, res) =>{
     const {id} = req.params
 
@@ -86,6 +87,19 @@ router.delete('/:id', async (req, res) =>{
             }
             });
         return res.status(200).send('Se elimino');
+    }
+})
+
+router.put('/:id',async (req, res)=>{
+    const {id} = res.params;
+    const {summary, step, diet, healthScore, name} = req.body; 
+
+    const allRecipe = await getApi();
+    const aux = allRecipe.find(el => el.id === id);
+    if(aux){
+        
+    }else{
+        res.status(404).send('Id no encontrado')
     }
 })
 

@@ -9,6 +9,7 @@ export default function Filters(){
 
     const dispatch = useDispatch();
     const allRecipes = useSelector((state)=> state.recipes);
+    const favorite = useSelector((state) => state.favorites)
     
     function handleFilterDiet(e){
             dispatch(filterRecipesByDiets(e.target.value))
@@ -45,7 +46,7 @@ export default function Filters(){
             <div>
                 <SearchBar/>
             </div>
-            <dv>
+            <div>
                 <h4 className="h4 title-filter">Filters</h4>
                 <h5 className="h4 title-fil">Diets</h5>
                 <select className='select_constiner select' id="diet" onChange={e=>handleFilterDiet(e)}>
@@ -72,7 +73,7 @@ export default function Filters(){
                     <option value='asc'>Ascendent</option>
                     <option value='desc'>Descendent</option>
                 </select>
-            </dv>
+            </div>
         </div>
             <button onClick={e=>handleClik(e)} className='btn_clear'>Refresh</button>
             </div>

@@ -91,3 +91,10 @@ export function deleteDb(payload){
     }
 }
 
+export function addFavorite(payload){
+    return{
+        type:'ADD_FAVORITE',
+        payload: payload,
+    }
+}
+
