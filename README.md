@@ -195,3 +195,7 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 ## Screenshot
 
 __LandingPage__:
+<img height="200" src="./screenshot/landingpage.jpg" />
+
+__LoadingPage__:
+<img height="200" src="./screenshot/loadingpage.jpg" />
