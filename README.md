@@ -195,7 +195,15 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 ## Screenshot
 <a href="https://youtu.be/gUPLw4EThp4">Video Youtube</a>
 __LandingPage__:
+
+
+
 <img height="200" src="./screenshot/landingpage.jpg" />
 
 __LoadingPage__:
+
+
+
+
+
 <img height="200" src="./screenshot/loading.jpg" />
