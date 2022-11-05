@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from 'react-redux';
 import SearchBar from "../SearchBar/SearchBar";
 import { getRecipe, filterRecipesByDiets, ordenByName, ordenByScore } from "../../Actions";
-import './Filters.css'
+import './Filters.scss'
 
 
 export default function Filters(){
@@ -41,7 +41,7 @@ export default function Filters(){
     }
     
     return(
-        <div>
+        <div className="constiner-filter">
         <div className="container">
             <div>
                 <SearchBar/>
@@ -76,6 +76,6 @@ export default function Filters(){
             </div>
         </div>
             <button onClick={e=>handleClik(e)} className='btn_clear'>Refresh</button>
-            </div>
+        </div>
     )
 };

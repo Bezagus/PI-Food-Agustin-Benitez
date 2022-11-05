@@ -5,7 +5,7 @@ import { getRecipe, cleanRecipe, getDiets, addFavorite } from "../../Actions";
 import { Link } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import Card from "../Card/Card";
-import './Home.css'
+import './Home.scss'
 import Filters from "../Filters/Filters";
 import Paginated from "../Paginated/Paginated";
 import LoadingPage from "../LoadingPage/LoadingPage";
@@ -36,8 +36,10 @@ export default function Home(){
                 <div className="dis-constainer"> 
                     <Nav className='div1'/>
                     <div className='home_container'>
+                        <div className="aling-filter">
                         <div className='container_filter'>
                             <Filters className='div2'/>
+                        </div>
                         </div>
                         <div className='constainer_Cards div3'>
                             <div className='cards_container'>
