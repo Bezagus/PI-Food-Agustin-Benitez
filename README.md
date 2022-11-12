@@ -60,8 +60,8 @@ El boilerplate cuenta con dos carpetas: `api` y `client`. En estas carpetas esta
 En `api` crear un archivo llamado: `.env` que tenga la siguiente forma:
 
 ```env
-DB_USER=postgres
-DB_PASSWORD=AgustinMarisa45_
+DB_USER=LocalHostpostgres
+DB_PASSWORD=passwordPostgres
 DB_HOST=localhost
 YOUR_API_KEY=298c5e9cf94c4e1f849925b84e97ccec
 
@@ -209,3 +209,18 @@ __LoadingPage__:
 
 
 <img height="200" src="./screenshot/loading.jpg" />
+
+
+__Home__:
+
+
+
+<img height="200" src="./screenshot/home.jpg" />
+
+__Create Recipe__:
+
+
+
+
+
+<img height="200" src="./screenshot/create Recipe.jpg" />
