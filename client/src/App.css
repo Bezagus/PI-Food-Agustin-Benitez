@@ -3,4 +3,8 @@ body{
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    overscroll-behavior-x:unset;
+    background: url('https://www.blogdelfotografo.com/wp-content/uploads/2020/03/portada-comida-scaled.jpg') no-repeat scroll center top #000;
+    background-size: cover;
+    overflow-x:hidden;
 }

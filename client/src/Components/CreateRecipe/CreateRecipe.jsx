@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link , useHistory} from "react-router-dom";
 import { useDispatch , useSelector } from "react-redux";
 import Nav from '../Nav 2/Nav';
-import './CreateRecipe.css';
+import './CreateRecipe.scss';
 import { getDiets, postRecipe } from "../../Actions";
 
 
@@ -135,9 +135,9 @@ export default function CreateRecipe(){
     const selecDiet = input.diet.join(' ,')
 
     return(
-        <div>
-            <Nav/>
+        <div className="form__container">
             <div className="div__constiner">
+            <Nav/>
                 <form onSubmit={(e) => handleSubmit(e)} className='form'>
                     <h1 className="title">Create Your Recipe</h1>
                     <div>

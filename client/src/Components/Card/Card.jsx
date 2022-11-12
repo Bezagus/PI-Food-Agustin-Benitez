@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteDb, getRecipe, addFavorite } from "../../Actions";
 import { Link, NavLink } from "react-router-dom";
 import ButtonDelete from "../button delete/buttonDelete";
-import './Card.css'
+import './Card.scss'
 
 export default function Card({img, name, diets, id, createdInDb, healthScore}){
 
