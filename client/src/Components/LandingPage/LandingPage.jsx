@@ -5,14 +5,12 @@ import './LandingPage.scss'
 
 export default function LandingPage(){
     return(
-        <div className='Landing_Container'>
-            <div className='Landing_Info'>
-                <h1 className='aling'>Recipe Bookstore</h1>
-                    <Link to='/home'>
-                        <button class="button-36-landing aling" role="button">Home</button>
-                    </Link>
-                <h2 className='Landing_Name'>Create by: Agustin Benitez</h2>
-            </div>
+        <div className='landing__page-container'>
+            <h1 className='landing__title'>Recipe Bookstore</h1>
+                <Link to='/home'>
+                    <button class="button-36-landing landing__button" role="button">Home</button>
+                </Link>
+            <h2 className='landing__createby'>Create by: Agustin Benitez</h2>
         </div>
     )
 }

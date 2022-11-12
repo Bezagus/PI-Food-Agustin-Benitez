@@ -45,3 +45,12 @@
         transition-duration: .1s;
       }
 }
+
+@media screen and (max-width: 350px){
+  .Nav_Container {
+    flex-direction: column;
+    .button-Nav {
+      position: inherit;
+    }
+  }
+}

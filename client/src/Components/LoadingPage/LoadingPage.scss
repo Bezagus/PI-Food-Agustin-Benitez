@@ -1,9 +1,13 @@
-.load-container{
+.load__continer{
+  background: url('https://www.blogdelfotografo.com/wp-content/uploads/2020/03/portada-comida-scaled.jpg') no-repeat scroll center top #000;
+  background-size: cover;
   width: 100%;
   height: 100%;
+  position: absolute;
   display: flex;
   justify-content: center;
-  .aling-loading{
+  align-content: center;
+  .load__content{
     position: absolute;
     bottom: 10%;
   }
@@ -12,8 +16,6 @@
     background-color: rgba(0, 0, 0, 0.8);
     width:600px;
     height:36px;
-    left:50%;
-    top:40%;
     overflow:visible;
     -webkit-user-select:none;
     -moz-user-select:none;
@@ -183,4 +185,27 @@
   }
 }
   
-  
+@media screen and (max-width: 630px) {
+  .load__continer{
+    #load {
+      width: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .load__continer{
+    #load {
+      width: 300px;
+    }
+  }
+}
+
+/* For small devices */
+@media screen and (max-width: 350px) {
+  .load__continer{
+    #load {
+      width: 200px;
+    }
+  }
+}

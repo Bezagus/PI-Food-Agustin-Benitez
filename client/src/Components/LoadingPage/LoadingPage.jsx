@@ -3,8 +3,8 @@ import './LoadingPage.scss'
 
 export default function LoadingPage(){
     return(
-        <div className="load-container">
-            <div className="aling-loading">
+        <div className="load__continer">
+            <div className="load__content">
                 <div id="load">
                     <div>G</div>
                     <div>N</div>
@@ -14,6 +14,7 @@ export default function LoadingPage(){
                     <div>O</div>
                     <div>L</div>
                 </div>
+                
             </div>
         </div>
         
